@@ -13,9 +13,18 @@ Thanks to [JungLearnBot's RPI 5 repo](https://github.com/JungLearnBot/RPi5_yolov
   
 - `sudo apt install code`
 
-- `sudo apt install make` 
+- `sudo apt install make`
 
-- `sudo apt install libedgetpu1-std`
+- see: [Get started with the USB Accelerator](https://coral.ai/docs/accelerator/get-started/)
+```bash
+echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
+
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+sudo apt-get update
+
+sudo apt install libedgetpu1-std
+```
 
 - > If you already had the Coral TPU USB plugged in then remove and reinsert to connect drivers. Otherwise you will get errors like 'pycoral module not installed'.
 
