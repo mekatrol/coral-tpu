@@ -14,7 +14,6 @@ sudo apt update && sudo apt upgrade -y
   
 sudo apt install code
 
-sudo apt install make
 ```
 see: [Get started with the USB Accelerator](https://coral.ai/docs/accelerator/get-started/)
 ```bash
@@ -39,8 +38,6 @@ cd coral-dev
 python3 -m venv .venv
 
 source .venv/bin/activate
-
-pip install numpy
 
 pip install Pillow
 
