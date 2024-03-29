@@ -46,7 +46,7 @@ sudo apt install libedgetpu1-std
 
 - `pip install tflite-runtime==2.14.0`
 
-- `git clone https://github.com/google-coral/libedgetpu`
+- `git clone --recurse-submodules https://github.com/google-coral/pycoral`
 
 - `cd pycoral`
 
