@@ -10,6 +10,8 @@ Thanks to [JungLearnBot's RPI 5 repo](https://github.com/JungLearnBot/RPi5_yolov
 - Install Bookworm 64 bit with desktop (desktop needed for visualisation)
 
 - `sudo apt update && sudo apt upgrade -y` - of course...
+  
+- `sudo apt install code`
 
 - `sudo apt install make` 
 
