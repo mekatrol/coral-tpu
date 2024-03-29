@@ -15,8 +15,9 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install code
 
 sudo apt install make
-
-# see: [Get started with the USB Accelerator](https://coral.ai/docs/accelerator/get-started/)
+```
+see: [Get started with the USB Accelerator](https://coral.ai/docs/accelerator/get-started/)
+```bash
 bash
 echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
 
