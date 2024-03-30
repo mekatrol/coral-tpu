@@ -5,6 +5,54 @@ A small repo to remind me how to set up Coral USB TPU on Raspberry PI.
 
 Thanks to [JungLearnBot's RPI 5 repo](https://github.com/JungLearnBot/RPi5_yolov8).
 
+# C++
+
+## Set up fresh Rasberry PI 5
+
+> Install Bookworm 64 bit with desktop (desktop needed for any visualisation, but following works with headless)
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+```bash  
+sudo apt install code
+```
+> Next steps taken from site [Tensorflow Build From Source](https://www.tensorflow.org/install/source)
+> 
+
+```bash
+sudo apt install python3-dev python3-pip
+```
+
+```bash
+pip install -U --user pip
+```
+
+```bash
+sudo apt-get update && sudo apt-get install -y llvm-17 clang-17
+```
+```bash
+cd ~/
+mkdir  bazelisk
+wget https://github.com/bazelbuild/bazelisk/releases/download/v1.19.0/bazelisk-linux-arm64 -O ~/bazelisk/bazelisk
+```
+```bash
+chmod +x ~/bazelisk/bazelisk
+```
+```bash
+sudo ln -s ~/bazelisk/bazelisk /usr/bin/bazel
+```
+```bash
+bazel --version
+
+```
+
+```bash
+
+```
+
+# Python
+
 ## Set up fresh Rasberry PI 5
 
 > Install Bookworm 64 bit with desktop (desktop needed for any visualisation, but following works with headless)
