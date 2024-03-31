@@ -218,11 +218,15 @@ bazel build -c opt //tensorflow/lite:libtensorflowlite.so
 ```
 
 #### This should produce the library file:
-`./tensorflow/lite/tools/pip_package/gen/tflite_pip/python3/dist/tflite_runtime-2.16.1-cp311-cp311-linux_aarch64.whl`
+```bash
+./tensorflow/lite/tools/pip_package/gen/tflite_pip/python3/dist/tflite_runtime-2.16.1-cp311-cp311-linux_aarch64.whl
+```
 
 > OR
 
-`~/tensorflow-2.16.1/bazel-bin/tensorflow/lite/libtensorflowlite.so`
+```bash
+~/tensorflow-2.16.1/bazel-bin/tensorflow/lite/libtensorflowlite.so
+```
 
 # Python
 
