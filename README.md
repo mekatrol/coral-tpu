@@ -5,7 +5,7 @@ A small repo to remind me how to set up Coral USB TPU on Raspberry PI.
 
 Three sets of instructions:
 1. C++ for tensorflow 2.4.2
-2. C++ / WHL for tensorflow
+2. C++ / WHL for tensorflow 2.16.1
 3. PyCoral (Thanks to [JungLearnBot's RPI 5 repo](https://github.com/JungLearnBot/RPi5_yolov8)).
 
 ## Set up fresh Rasberry PI 5
