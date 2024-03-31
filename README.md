@@ -3,7 +3,10 @@
 ## Intro
 A small repo to remind me how to set up Coral USB TPU on Raspberry PI.
 
-Thanks to [JungLearnBot's RPI 5 repo](https://github.com/JungLearnBot/RPi5_yolov8).
+Three sets of instructions:
+1. C++ for tensorflow 2.4.2
+2. C++ / WHL for tensorflow
+3. PyCoral (Thanks to [JungLearnBot's RPI 5 repo](https://github.com/JungLearnBot/RPi5_yolov8)).
 
 ## Set up fresh Rasberry PI 5
 
@@ -24,7 +27,7 @@ sudo apt install python3-dev python3-pip
 sudo apt install code
 ```
 
-### Clone tensorflow (we use 2.4.2)
+### Clone tensorflow (2.4.2)
 ```bash
 git clone -b v2.4.2 --single-branch https://github.com/tensorflow/tensorflow.git tensorflow-2.4.2
 ```
@@ -118,6 +121,7 @@ bazel build -c opt //tensorflow/lite:libtensorflowlite.so
 `~/tensorflow-2.4.2/bazel-bin/tensorflow/lite/libtensorflowlite.so`
 
 ## Build TF 2.16.1
+### Clone tensorflow (2.16.1)
 
 ```bash
 # Clone repo at latest release branch (2.16.1 at time of writing)
