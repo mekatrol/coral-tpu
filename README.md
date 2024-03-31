@@ -29,7 +29,7 @@ sudo apt install code
 git clone -b v2.4.2 --single-branch https://github.com/tensorflow/tensorflow.git tensorflow-2.4.2
 ```
 
-## Set up bazel
+### Set up bazel
 ```bash
 # Get binary
 wget https://github.com/bazelbuild/bazel/releases/download/3.7.2/bazel-3.7.2-linux-arm64 -O ~/bazel/bazel-3.7.2
@@ -59,8 +59,8 @@ pip install -U pip numpy wheel
 pip install -U keras_preprocessing --no-deps
 ```
 
+### Configure build
 ```bash
-# Configure build
 python ./configure.py
 ```
 - Make sure bazel detected:
@@ -108,11 +108,13 @@ Preconfigured Bazel build configs to DISABLE default on features:
 ```
 
 ### Build with bazel
+
+#### Build lib file
 ```bash
 bazel build -c opt //tensorflow/lite:libtensorflowlite.so
 ```
 
-#### This should produce the library file:
+#### Output file
 `~/tensorflow-2.4.2/bazel-bin/tensorflow/lite/libtensorflowlite.so`
 
 ## Build TF 2.16.1
@@ -121,7 +123,7 @@ bazel build -c opt //tensorflow/lite:libtensorflowlite.so
 # Clone repo at latest release branch (2.16.1 at time of writing)
 git clone -b v2.16.1 --single-branch https://github.com/tensorflow/tensorflow.git tensorflow-2.16.1
 ```
-## Set up bazel
+### Set up bazel
 > The bazel version needs is defined in the ~/tensorflow-2.16.1/.bazelversion file
 ```bash
 
