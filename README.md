@@ -84,6 +84,13 @@ cd pycoral
 cd pycoral
 ./classify.sh
 ./detect.sh
+
+# On docker container, push to docker container host
+# Copy generated bmp via ssh/   (change 'pi' to your user name and change 'videoprocessor.lan to your host / IP)'
+scp ~/grace_hopper_processed.bmp pi@videoprocessor.lan:~/grace_hopper_processed.bmp
+
+# From windows machine or similar, pull from docker container host
+scp pi@videoprocessor.lan:~/grace_hopper_processed.bmp ./grace_hopper_processed.bmp 
 ```
 
 ## Build TF 2.4.2
