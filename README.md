@@ -25,6 +25,10 @@ sudo apt install -y git
 
 ## Docker install
 
+>
+> NOTE: DO NOT INSTALL libedgetpu.so on host Raspberry Pi, just in the Docker container! [see docker/pycoral/Dockerfile](https://github.com/mekatrol/coral-tpu/blob/main/docker/pycoral/Dockerfile)
+>
+
 ### See [Install Docker Engine on Debian](https://docs.docker.com/engine/install/debian/) - Install using the apt repository
 
 ```bash
