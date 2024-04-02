@@ -2,6 +2,14 @@
 docker build -t nodejs:1.0 . -f nodejs/Dockerfile
 docker build -t pycoral:1.0 . -f pycoral/Dockerfile
 
+###################################################################################################################
+# image_processing_server
+# Run these from the image_processing_server directory
+###################################################################################################################
+docker image pull python:3.9
+docker build -t image_processing_server:1.0 . 
+docker run --name image_processing_server --privileged -p 9090:9090 -it image_processing_server:1.0
+
 # List image
 docker image list
 
