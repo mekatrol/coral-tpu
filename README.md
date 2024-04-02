@@ -82,7 +82,8 @@ cd pycoral
 
 ```bash
 cd pycoral
-./test.sh
+./classify.sh
+./detect.sh
 ```
 
 ## Build TF 2.4.2
