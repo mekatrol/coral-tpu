@@ -39,3 +39,6 @@ docker container prune
 
 # Prune images
 docker image prune
+
+# Prune build cache
+docker builder prune -a

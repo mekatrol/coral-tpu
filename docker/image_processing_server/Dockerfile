@@ -46,6 +46,7 @@ COPY ./app /server/app
 
 # Setup shell run script (run sshd and fast api server)
 RUN echo "#! /bin/bash" > /run.sh && \
+  echo "sleep 60" >> /run.sh && \
   echo "/usr/sbin/sshd -D &" >> /run.sh && \
   echo "cd /server" >> /run.sh && \
   echo "uvicorn app.main:app --host 0.0.0.0 --port 9090" >> /run.sh && \
