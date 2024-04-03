@@ -1,16 +1,32 @@
 FROM ubuntu:20.04
 VOLUME /data
+ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update 
-RUN apt-get upgrade -y   
-RUN apt-get install -y sudo gnupg2 curl
+# Update and install packages
+RUN apt-get update && \
+  apt-get upgrade -y   && \
+  apt-get install -y sudo gnupg2 curl openssh-server nano iproute2 apt-transport-https git
 
-RUN echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
-RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - 
-RUN sudo apt-get update 
-RUN sudo apt-get install -y libedgetpu1-std
-RUN sudo apt-get install -y python3-pip
-RUN sudo apt-get install -y python3-pycoral
+# Set up configuration for SSH
+RUN mkdir /var/run/sshd && \
+  sed -i 's/#Port 22/Port 2202/' /etc/ssh/sshd_config && \
+  echo 'AllowUsers dev' >> /etc/ssh/sshd_config && \
+  sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd && \
+  echo "export VISIBLE=now" >> /etc/profile
+
+# Expose the SSH port (nano /etc/ssh/sshd_config) 
+EXPOSE 2202
+
+# Install Coral TPU USB config and python packages
+RUN echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list && \
+  curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -  && \
+  sudo apt-get update  && \
+  sudo apt-get install -y libedgetpu1-std && \
+  sudo apt-get install -y python3-pip && \
+  sudo apt-get install -y python3-pycoral
+
+# Add dev user and set their password to dev (so they can SSH)
+RUN useradd -rm -d /home/dev -s /bin/bash -g root -G sudo -u 1001 -p "$(openssl passwd -1 dev)" dev
 
 WORKDIR /server
 
@@ -20,7 +36,12 @@ RUN pip install --no-cache-dir --upgrade -r /server/requirements.txt
 
 COPY ./app /server/app
 
-#CMD ["/bin/bash"]
+# Setup shell run script (run sshd and fast api server)
+RUN echo "#! /bin/bash" > /run.sh && \
+  echo "/usr/sbin/sshd -D &" >> /run.sh && \
+  echo "cd /server" >> /run.sh && \
+  echo "uvicorn app.main:app --host 0.0.0.0 --port 9090" >> /run.sh && \
+  chmod +x /run.sh
 
-# uvicorn app.main:app --host 0.0.0.0 --port 9090
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "9090"]
+#CMD ["/bin/bash"]
+CMD ["/run.sh"]

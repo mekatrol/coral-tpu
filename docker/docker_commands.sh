@@ -8,7 +8,9 @@ docker build -t pycoral:1.0 . -f pycoral/Dockerfile
 ###################################################################################################################
 docker image pull python:3.9
 docker build -t image_processing_server:1.0 . 
-docker run --name image_processing_server --privileged -p 9090:9090 -it image_processing_server:1.0
+# Run with auto remove (-rm) 
+docker run --name image_processing_server --rm --network host --privileged -it image_processing_server:1.0
+docker run --name image_processing_server --network host --privileged -dit image_processing_server:1.0
 
 # List image
 docker image list
