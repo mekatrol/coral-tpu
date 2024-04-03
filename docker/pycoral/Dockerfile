@@ -5,7 +5,6 @@ RUN apt-get update
 RUN apt-get upgrade -y  
 RUN apt-get install -y sudo gnupg2 curl git usbutils nano
 
-
 RUN echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - 
 RUN sudo apt-get update 

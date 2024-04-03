@@ -10,7 +10,7 @@ docker image pull python:3.9
 docker build -t image_processing_server:1.0 . 
 # Run with auto remove (-rm) 
 docker run --name image_processing_server --rm --network host --privileged -it image_processing_server:1.0
-docker run --name image_processing_server --network host --privileged -dit image_processing_server:1.0
+docker run --name image_processing_server --network host --privileged --restart unless-stopped -dit image_processing_server:1.0
 
 # List image
 docker image list
@@ -39,3 +39,6 @@ docker container prune
 
 # Prune images
 docker image prune
+
+# Prune build cache
+docker builder prune -a
