@@ -69,6 +69,10 @@ docker container prune
 docker image prune -a
 ```
 
+> Sometimes after a reboot it can take a couple of minutes for USB to start
+> working and you will see this error until it does.  
+> `ValueError: Failed to load delegate from libedgetpu.so.1`
+
 ```bash
 git clone https://github.com/mekatrol/coral-tpu.git
 cd ~/coral-tpu/docker
