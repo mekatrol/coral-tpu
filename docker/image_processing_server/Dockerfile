@@ -5,7 +5,15 @@ ENV DEBIAN_FRONTEND noninteractive
 # Update and install packages
 RUN apt-get update && \
   apt-get upgrade -y   && \
-  apt-get install -y sudo gnupg2 curl openssh-server nano iproute2 apt-transport-https git
+  apt-get install -y sudo gnupg2 curl openssh-server nano iproute2 apt-transport-https git wget
+
+# Install VS Code
+RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && \
+  sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg && \
+  sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list' && \
+  rm -f packages.microsoft.gpg && \
+  sudo apt update && \
+  sudo apt install -y code
 
 # Set up configuration for SSH
 RUN mkdir /var/run/sshd && \
@@ -41,6 +49,7 @@ RUN echo "#! /bin/bash" > /run.sh && \
   echo "/usr/sbin/sshd -D &" >> /run.sh && \
   echo "cd /server" >> /run.sh && \
   echo "uvicorn app.main:app --host 0.0.0.0 --port 9090" >> /run.sh && \
+  echo "while true; do sleep 1; done"  >> /run.sh && \
   chmod +x /run.sh
 
 #CMD ["/bin/bash"]
