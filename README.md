@@ -98,7 +98,7 @@ crontab -e
 ```
 > Add `*/1 * * * * /usr/bin/python /home/pi/test_container.py`
 >
-> Check logs `journalctl -u cron | grep CRON test_container.py`
+> Check logs `journalctl -u cron | grep test_container.py`
 
 ```bash
 git clone https://github.com/mekatrol/coral-tpu.git
