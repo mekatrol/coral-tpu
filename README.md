@@ -72,6 +72,31 @@ docker image prune -a
 > Sometimes after a reboot it can take a couple of minutes for USB to start
 > working and you will see this error until it does.  
 > `ValueError: Failed to load delegate from libedgetpu.so.1`
+> This can be resolved by adding a cron job to run a restart container script as follows.
+
+Create file `/home/pi/test_container.py` (change to use your user name in place of 'pi')
+
+```python
+import requests
+import subprocess
+
+restart_container = False
+
+try:
+  response = requests.get('http://videoprocessor.lan:9090')
+  if response.status_code != 200:
+    restart_container = True
+except:
+  restart_container = True
+
+if restart_container:
+  subprocess.run('docker container restart image_processing_servershell=True)
+```
+
+```bash
+crontab -e
+```
+> Add `*/1 * * * * /usr/bin/python /home/pi/test_container.py`
 
 ```bash
 git clone https://github.com/mekatrol/coral-tpu.git
