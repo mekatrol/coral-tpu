@@ -42,7 +42,7 @@ def main(preview: bool):
         if(detection['label'] == 'person'):
           bbox = detection['boundingBox']
           xmin = bbox['xmin']
-          ymin = bbox['xmin']
+          ymin = bbox['ymin']
           xmax = bbox['xmax']
           ymax = bbox['ymax']
           cv2.rectangle(frame, (xmin, ymin), (xmax, ymax), (0, 255, 0), 3)
